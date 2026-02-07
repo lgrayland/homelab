@@ -1,0 +1,20 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+      # MYSQL_DATABASE: mydatabase
+    ports:
+      - "3306:3306"
+    networks:
+      - mariadb
+
+networks:
+  mariadb:
+    name: mariadb
+    driver: bridge

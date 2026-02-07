@@ -1,0 +1,22 @@
+services:
+  # Radarr - Movie management
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    # security_opt:
+    #   - no-new-privileges:true
+    restart: "unless-stopped"
+    # profiles: ["media", "arrs", "all"]
+    networks:
+      - default
+    ports:
+      - "7878:7878"
+    volumes:
+      - $APPDATA/radarr:/config
+      - /mnt/media-movies-old/luke/MediaServer/media/movies:/movies
+      - $TORRENTS:/downloads
+      - "/etc/localtime:/etc/localtime:ro"
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID

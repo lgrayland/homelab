@@ -1,0 +1,18 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      # - socket_proxy
+      - default
+    ports:
+      - "3030:3000"
+    volumes:
+      - $APPDATA/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: gethomepage.dev,192.168.1.64:3030
+      PUID: $PUID
+      PGID: $PGID

@@ -1,0 +1,15 @@
+services:
+  # Uptime Kuma - Status Page & Monitoring Server
+  uptime-kuma:
+    image: louislam/uptime-kuma
+    container_name: uptime-kuma
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    # profiles: ["core", "all"]
+    ports:
+      - "3001:3001"
+    networks:
+      - default
+    volumes:
+      - $APPDATA/uptime-kuma:/app/data

@@ -1,0 +1,27 @@
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:v3.3.2 #
+    container_name: mealie
+    restart: always
+    ports:
+      - "9925:9000" #
+    deploy:
+      resources:
+        limits:
+          memory: 1000M #
+    volumes:
+      - $APPDATA/mealie:/app/data/
+    environment:
+      # Set Backend ENV Variables Here
+      ALLOW_SIGNUP: "false"
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+      BASE_URL: https://mealie.lgrayland.com
+      # SMTP_HOST: $SMTP_HOST
+      # SMTP_PORT: 587
+      # SMTP_FROM_NAME: Mealie
+      # SMTP_AUTH_STRATEGY: TLS
+      # SMTP_FROM_EMAIL: mealie@lgrayland.com
+      # SMTP_USER: $SMTP_USER
+      # SMTP_PASSWORD: $SMTP_PASSWORD

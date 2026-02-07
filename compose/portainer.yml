@@ -1,0 +1,15 @@
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:lts
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $APPDATA/portainer:/data
+    ports:
+      # - 9443:9443
+      - 9000:9000
+      # - 8000:8000 # Remove if you do not intend to use Edge Agents
+# networks:
+#   default:
+#     name: portainer_network

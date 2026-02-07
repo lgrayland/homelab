@@ -1,0 +1,12 @@
+services:
+  wyp:
+    image: aceberg/watchyourports
+    container_name: wyp
+    restart: unless-stopped
+    ports:
+      - 8853:8853
+    volumes:
+      - $APPDATA/WatchYourPorts:/data/WatchYourPorts
+    environment:
+      TZ: $TZ
+      # HOST: "192.168.1.99"

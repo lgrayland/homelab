@@ -1,0 +1,17 @@
+services:
+  home-console:
+    container_name: home-console
+    build:
+      context: ../../Dev/home-console
+      dockerfile: Dockerfile
+      # args:
+      #   DATABASE_URL: ${HOME_CONSOLE_DATABASE_URL}
+    environment:
+      DATABASE_URL: ${HOME_CONSOLE_DATABASE_URL}
+    restart: always
+    # ports:
+    #   - 127.0.0.1:3031:3000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - nginx-proxy

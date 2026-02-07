@@ -1,0 +1,23 @@
+services:
+  nginx-proxy:
+    image: "jc21/nginx-proxy-manager:latest"
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80" # Public HTTP Port
+      - "443:443" # Public HTTPS Port
+      - "81:81" # Admin Web Port
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - $APPDATA/npm/config:/config
+      - $APPDATA/nginx-proxy/letsencrypt:/etc/letsencrypt
+      - $APPDATA/nginx-proxy/data:/data
+    networks:
+      - nginx-proxy
+      - wg-easy
+
+networks:
+  nginx-proxy:
+    name: nginx-proxy
+    external: true

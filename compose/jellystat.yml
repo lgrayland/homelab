@@ -1,0 +1,23 @@
+services:
+  jellystat:
+    image: cyfershepard/jellystat:latest
+    container_name: jellystat
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_IP: postgres
+      POSTGRES_PORT: 5432
+      JWT_SECRET: $JWT_SECRET
+      TZ: $TZ
+    volumes:
+      - $APPDATA/jellystat:/app/backend/backup-data
+    ports:
+      - "3010:3000"
+    depends_on:
+      - postgres

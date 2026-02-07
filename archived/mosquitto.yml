@@ -1,0 +1,15 @@
+services:
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    environment:
+      TZ: $TZ
+    volumes:
+      - $APPDATA/mosquitto/config:/mosquitto/config
+      - $APPDATA/mosquitto/data:/mosquitto/data
+      - $APPDATA/mosquitto/log:/mosquitto/log
+    stdin_open: true
+    tty: true

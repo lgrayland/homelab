@@ -1,0 +1,20 @@
+services:
+  # Bazarr - Subtitle Management
+  bazarr:
+    image: lscr.io/linuxserver/bazarr
+    container_name: bazarr
+    security_opt:
+      - no-new-privileges:true
+    restart: "no"
+    # profiles: ["media", "arrs", "all"]
+    networks:
+      - default
+    ports:
+      - "6767:6767"
+    volumes:
+      - $APPDATA/bazarr:/config
+      - $ALTDATADIR:/data
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID

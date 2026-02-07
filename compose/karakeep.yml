@@ -1,0 +1,53 @@
+services:
+  karakeep:
+    image: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
+    container_name: karakeep
+    restart: unless-stopped
+    volumes:
+      # By default, the data is stored in a docker volume called "data".
+      # If you want to mount a custom directory, change the volume mapping to:
+      # - /path/to/your/directory:/data
+      - $APPDATA/karakeep:/data
+    ports:
+      - 3100:3000
+    environment:
+      KARAKEEP_VERSION: release
+      NEXTAUTH_SECRET: $NEXTAUTH_SECRET
+      MEILI_MASTER_KEY: $MEILI_MASTER_KEY
+      NEXTAUTH_URL: http://192.168.1.64:3100
+      MEILI_ADDR: http://karakeep-meilisearch:7700
+      BROWSER_WEB_URL: http://karakeep-chrome:9222
+      # OPENAI_API_KEY: $OPENAI_API_KEY
+      ASSET_STORE_S3_ENDPOINT: https://s3.us-east-1.amazonaws.com
+      ASSET_STORE_S3_REGION: us-east-1
+      ASSET_STORE_S3_BUCKET: karakeep-images
+      ASSET_STORE_S3_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+      ASSET_STORE_S3_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+
+      # You almost never want to change the value of the DATA_DIR variable.
+      # If you want to mount a custom directory, change the volume mapping above instead.
+      DATA_DIR: /data # DON'T CHANGE THIS
+  karakeep-chrome:
+    image: gcr.io/zenika-hub/alpine-chrome:124
+    container_name: karakeep-chrome
+    restart: unless-stopped
+    command:
+      - --no-sandbox
+      - --disable-gpu
+      - --disable-dev-shm-usage
+      - --remote-debugging-address=0.0.0.0
+      - --remote-debugging-port=9222
+      - --hide-scrollbars
+  karakeep-meilisearch:
+    image: getmeili/meilisearch:v1.13.3
+    container_name: karakeep-meilisearch
+    restart: unless-stopped
+    environment:
+      MEILI_NO_ANALYTICS: "true"
+      MEILI_MASTER_KEY: $MEILI_MASTER_KEY
+    volumes:
+      - meilisearch:/meili_data
+
+volumes:
+  meilisearch:
+  data:

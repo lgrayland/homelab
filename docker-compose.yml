@@ -1,0 +1,49 @@
+networks:
+  default:
+    driver: bridge
+
+include:
+  # Monitoring & Management
+  - ./compose/glances.yml
+  - ./compose/portainer.yml
+  - ./compose/adminer.yml
+
+  # Databases
+  - ./compose/postgres.yml
+  - ./compose/mariadb.yml
+
+  # Networking & Security
+  - ./compose/nginx-proxy.yml
+  - ./compose/wg-easy.yml
+  - ./compose/pihole.yml
+  - ./compose/ddns.yml
+
+  # Applications
+  - ./compose/homepage.yml
+  - ./compose/mealie.yml
+  - ./compose/home-console.yml
+
+  # VPN Client
+  - ./compose/gluetun.yml
+
+  # Karakeep
+  - ./compose/karakeep.yml
+
+  # Download Clients
+  - ./compose/qbittorrent.yml
+
+  # Media Management
+  - ./compose/jellyfin.yml
+  - ./compose/radarr.yml
+  - ./compose/sonarr.yml
+
+  - ./compose/prowlarr.yml
+
+  # Utilities
+  - ./compose/flaresolverr.yml
+
+  # Jellystat - Jellyfin Statistics
+  - ./compose/jellystat.yml
+
+  # Reitti - Routing Engine
+  - ./compose/reitti.yml
