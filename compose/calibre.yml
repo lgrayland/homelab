@@ -1,0 +1,24 @@
+services:
+  calibre:
+    image: lscr.io/linuxserver/calibre:latest
+    container_name: calibre
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
+      - CUSTOM_USER=luke
+      - PASSWORD=$WEBPASSWORD
+      # - PASSWORD= #optional
+      # - CLI_ARGS= #optional
+    volumes:
+      - $APPDATA/calibre/config:/config
+      - $DATADIR/books/incoming:/config/incoming
+      - $DATADIR/books/library:/config/library
+    ports:
+      - 8280:8080
+      - 8281:8181
+      - 8282:8081
+    shm_size: "1gb"
+    restart: unless-stopped

@@ -16,6 +16,7 @@ services:
         condition: service_healthy
     volumes:
       - $APPDATA/reitti-data:/data/
+    restart: unless-stopped
     environment:
       PHOTON_BASE_URL: http://photon:2322
       POSTGIS_USER: $POSTGIS_USER
@@ -29,6 +30,7 @@ services:
       POSTGRES_USER: $POSTGIS_USER
       POSTGRES_PASSWORD: $POSTGIS_PASSWORD
       POSTGRES_DB: reittidb
+    restart: unless-stopped
     volumes:
       - $APPDATA/postgis-data:/var/lib/postgresql/data
     healthcheck:
@@ -42,6 +44,7 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: $RABBITMQ_DEFAULT_USER
       RABBITMQ_DEFAULT_PASS: $RABBITMQ_DEFAULT_PASS
+    restart: unless-stopped
     volumes:
       - $APPDATA/rabbitmq-data:/var/lib/rabbitmq
     healthcheck:
@@ -54,6 +57,7 @@ services:
     container_name: redis
     volumes:
       - $APPDATA/redis-data:/data
+    restart: unless-stopped
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s

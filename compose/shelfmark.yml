@@ -1,0 +1,14 @@
+services:
+  shelfmark:
+    image: ghcr.io/calibrain/shelfmark:latest
+    container_name: shelfmark
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+    ports:
+      - 8084:8084
+    restart: unless-stopped
+    volumes:
+      - $DATADIR/books/incoming:/books
+      - $APPDATA/shelfmark/config:/config
+      - $DATADIR/torrents:/downloads

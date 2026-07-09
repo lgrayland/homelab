@@ -6,7 +6,7 @@ include:
   # Monitoring & Management
   - ./compose/glances.yml
   - ./compose/portainer.yml
-  - ./compose/adminer.yml
+  # - ./compose/adminer.yml
 
   # Databases
   - ./compose/postgres.yml
@@ -16,12 +16,13 @@ include:
   - ./compose/nginx-proxy.yml
   - ./compose/wg-easy.yml
   - ./compose/pihole.yml
-  - ./compose/ddns.yml
+  # - ./compose/ddns.yml
+  - ./compose/cloudflare-ddns.yml
 
   # Applications
-  - ./compose/homepage.yml
+  # - ./compose/homepage.yml
   - ./compose/mealie.yml
-  - ./compose/home-console.yml
+  # - ./compose/home-console.yml
 
   # VPN Client
   - ./compose/gluetun.yml
@@ -46,4 +47,13 @@ include:
   - ./compose/jellystat.yml
 
   # Reitti - Routing Engine
-  - ./compose/reitti.yml
+  # - ./compose/reitti.yml
+
+  # Calibre - eBook Management
+  - ./compose/calibre.yml
+  # Shelfmark - eBook Download Manager
+  - ./compose/shelfmark.yml
+
+  - ./compose/uptime-kuma.yml
+
+  - ./compose/portracker.yml

@@ -12,7 +12,7 @@ services:
     #   - "8080:8080"
     volumes:
       - $APPDATA/qbittorrent:/config
-      - $DATADIR/torrents:/downloads # Ensure that downloads folder is set to /data/downloads in qBittorrent
+      - $DATADIR/torrents:/downloads
     environment:
       TZ: $TZ
       PUID: $PUID
