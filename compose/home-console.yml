@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
+      AUTOMATION_API_TOKEN: ${AUTOMATION_API_TOKEN}
       DATABASE_URL: ${HOME_CONSOLE_DATABASE_URL}
       KITCHEN_DATABASE_URL: ${HOME_CONSOLE_KITCHEN_DATABASE_URL}
       NODE_ENV: production
@@ -25,3 +26,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+    networks:
+      - default
+      - automation

@@ -22,3 +22,5 @@ services:
 
     volumes:
       - ${APPDATA}/n8n:/home/node/.n8n
+    networks:
+      - automation
