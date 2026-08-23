@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: postgres
-    image: postgres
+    image: postgres:18
     restart: always
     environment:
       TZ: $TZ
@@ -11,7 +11,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - $APPDATA/postgres:/var/lib/postgresql/data
+      - $APPDATA/postgres:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d postgres -U postgres"]
       interval: 1s

@@ -18,11 +18,12 @@ include:
   - ./compose/pihole.yml
   # - ./compose/ddns.yml
   - ./compose/cloudflare-ddns.yml
+  - ./compose/cloudflared.yml
 
   # Applications
   # - ./compose/homepage.yml
   - ./compose/mealie.yml
-  # - ./compose/home-console.yml
+  - ./compose/home-console.yml
 
   # VPN Client
   - ./compose/gluetun.yml
