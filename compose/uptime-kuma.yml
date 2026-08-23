@@ -11,5 +11,6 @@ services:
       - "3001:3001"
     networks:
       - default
+      - automation
     volumes:
       - $APPDATA/uptime-kuma:/app/data
