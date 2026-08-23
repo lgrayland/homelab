@@ -12,6 +12,8 @@ include:
   - ./compose/postgres.yml
   - ./compose/mariadb.yml
 
+  - ./compose/n8n/docker-compose.yml
+
   # Networking & Security
   - ./compose/nginx-proxy.yml
   - ./compose/wg-easy.yml
