@@ -1,0 +1,12 @@
+services:
+  umami:
+    container_name: umami
+    image: docker.umami.is/umami-software/umami:postgresql-latest
+    restart: unless-stopped
+
+    environment:
+      DATABASE_URL: postgresql://${UMAMI_DB_USER}:${UMAMI_DB_PASSWORD}@postgres:5432/${UMAMI_DB_NAME}
+      APP_SECRET: ${UMAMI_APP_SECRET}
+
+    ports:
+      - 3003:3000
