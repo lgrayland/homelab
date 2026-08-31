@@ -27,7 +27,7 @@ include:
   # Applications
   # - ./compose/homepage.yml
   # - ./compose/mealie.yml
-  - ./compose/home-console.yml
+  - ./compose/home-console/docker-compose.yml
 
   # VPN Client
   - ./compose/gluetun.yml

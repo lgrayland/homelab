@@ -2,13 +2,14 @@ services:
   home-console:
     container_name: home-console
     build:
-      context: ../../workshop/home-console
+      context: ../../../workshop/home-console
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
       AUTOMATION_API_TOKEN: ${AUTOMATION_API_TOKEN}
       DATABASE_URL: ${HOME_CONSOLE_DATABASE_URL}
       KITCHEN_DATABASE_URL: ${HOME_CONSOLE_KITCHEN_DATABASE_URL}
+      MCP_API_TOKEN: ${MCP_API_TOKEN}
       NODE_ENV: production
       HOST: 0.0.0.0
       PORT: 3000
