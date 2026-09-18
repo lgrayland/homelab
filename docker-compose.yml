@@ -9,6 +9,7 @@ include:
   - ./compose/glances.yml
   - ./compose/portainer.yml
   # - ./compose/adminer.yml
+  - ./compose/scrutiny.yml
 
   # Databases
   - ./compose/postgres.yml
