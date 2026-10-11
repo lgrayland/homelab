@@ -29,6 +29,8 @@ include:
   # - ./compose/homepage.yml
   # - ./compose/mealie.yml
   - ./compose/home-console/docker-compose.yml
+  - ./compose/lgrayland-mcp/docker-compose.yml
+  - ./compose/openai-tunnel/docker-compose.yml
 
   # VPN Client
   - ./compose/gluetun.yml

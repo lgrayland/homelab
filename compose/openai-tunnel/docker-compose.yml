@@ -1,0 +1,19 @@
+services:
+  openai-tunnel:
+    image: ghcr.io/openai/tunnel-client:v0.0.16
+    container_name: openai-tunnel
+    restart: unless-stopped
+
+    environment:
+      CONTROL_PLANE_API_KEY: ${OPENAI_TUNNEL_API_KEY}
+      CONTROL_PLANE_TUNNEL_ID: ${OPENAI_TUNNEL_ID}
+      MCP_SERVER_URL: http://lgrayland-mcp:3100/mcp
+      LOG_LEVEL: info
+      LOG_FORMAT: json
+
+    depends_on:
+      lgrayland-mcp:
+        condition: service_started
+
+    networks:
+      - default
