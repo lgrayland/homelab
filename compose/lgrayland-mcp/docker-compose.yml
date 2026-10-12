@@ -10,8 +10,12 @@ services:
       MCP_HOST: 0.0.0.0
       MCP_PORT: 3100
       HOME_CONSOLE_URL: http://home-console:3000
+      HOME_CONSOLE_ROOT: /projects/home-console
       MCP_API_TOKEN: ${MCP_API_TOKEN}
       NODE_ENV: production
+
+    volumes:
+      - ../../../workshop/home-console:/projects/home-console:ro
 
     ports:
       - "127.0.0.1:3100:3100"
